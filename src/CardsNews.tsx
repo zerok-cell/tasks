@@ -22,14 +22,15 @@ const CardsNews = () => {
         return <Spinner />;
     }
 
-    console.log(count)
     return (
         <>
             {count !== null && count  ? (
                count.map((item, index) => (
-                   <Card.Root key={index}>
-                       <Text>{item}</Text>
-                   </Card.Root>
+                   item.map((items,key)=>{
+                       <Card.Root key={key}>
+                           <Text>{items.name}</Text>
+                       </Card.Root>
+                   })
                ))
             ) : (
                 <Text>No joke available.</Text>

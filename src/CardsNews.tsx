@@ -1,4 +1,4 @@
-import {Card, Text, Spinner, Flex} from "@chakra-ui/react";
+import {Spinner, Flex} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import getJoke from "../api/superhero_get.ts";
 import {useDispatch, useSelector} from "react-redux";

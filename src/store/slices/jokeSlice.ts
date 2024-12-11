@@ -18,6 +18,7 @@ export const jokeSlice = createSlice({
         },
         delPotions:(state, action:PayloadAction<string>)=>{
             console.log(state.potions.map(i=>i))
+            console.log(action.payload)
         },
     }
 })

@@ -7,8 +7,8 @@ import {delPotions} from "@/store/slices/jokeSlice.ts";
 const CardPotion = ({id,data}:{id:string,data:Root2})=>{
     const dispatch = useDispatch();
 
-    const setLike = (e)=>{
-        e.target.style.color = e.target.style.color ==="white"?"#ff7878":"white";
+    const setLike = (e: React.MouseEvent<SVGElement>)=>{
+        e.currentTarget.style.color = e.currentTarget.style.color === "white"?"#ff7878":"white";
 
     }
     const deleteCard = () =>{
@@ -24,7 +24,7 @@ const CardPotion = ({id,data}:{id:string,data:Root2})=>{
                 {/*{data.sideEffects? (<p><b>Side Effect</b>{data.sideEffects}</p>):(<p><b>Not side effect</b></p>)}*/}
             </Flex>
             <Flex className={"heart-flex"} alignItems="end">
-                <HiHeart onMouseUp={setLike} className={'heart'}/>
+                <HiHeart onClick={setLike} className={'heart'}/>
             </Flex>
         </Flex>
     )

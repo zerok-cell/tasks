@@ -1,29 +1,27 @@
 import type {RootState} from "@/store/store.ts";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import maxNum from "@/lib/maxNum.ts";
+import {Root} from "../../../api/types.ts";
 
 export interface JokeState {
-    joke: {
-        [key: number]: string;
-    };
+    potions: Root[]
 }
 
 const initialState: JokeState = {
-    joke: {},
+    potions:[]
 }
 export const jokeSlice = createSlice({
-    name:"joke",
+    name:"potions",
     initialState,
     reducers:{
-        setJoke:(state, action:PayloadAction<string>)=>{
-            state.joke[maxNum(state.joke)] = action.payload;
+        setPotions:(state, action:PayloadAction<Root>)=>{
+            state.potions.push(action.payload)
         },
-        deleteJoke:(state, action:PayloadAction<number>)=>{
-            delete state.joke[action.payload]
+        delPotions:(state, action:PayloadAction<string>)=>{
+            console.log(state.potions.map(i=>i))
         },
     }
 })
 
-export const {setJoke, deleteJoke} =  jokeSlice.actions;
-export const selectJoke = (state:RootState) => state.joke
+export const {setPotions, delPotions} =  jokeSlice.actions;
+export const selectPotions = (state:RootState) => state.potions
 export default jokeSlice.reducer

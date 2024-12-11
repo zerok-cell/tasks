@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import jokeSlice from "@/store/slices/jokeSlice.ts";
+import jokeReducer from "@/store/slices/jokeSlice.ts";
 
 export const store = configureStore({
     reducer:{
-        joke:jokeSlice
+        potions: jokeReducer
     }
 })
 

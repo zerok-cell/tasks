@@ -16,16 +16,13 @@ export const jokeSlice = createSlice({
         setPotions:(state, action:PayloadAction<Root>)=>{
             state.potions.push(action.payload)
         },
-        delPotions:(state, action:PayloadAction<string>)=>{
-            state.potions.map(
-                item=>item.map(item=>item.map(
-                    item=> {
-                        if (item.id === action.payload){
-
-                        }
-                    }
-                ))
-            )
+        delPotions:(state, action:PayloadAction<number>)=>{
+            const result:Root = []
+            state.potions[0][0].splice(action.payload,1)
+            for (const potion of state.potions[0][0]){
+                result.push(potion)
+            }
+            setPotions(result)
 
         },
     }

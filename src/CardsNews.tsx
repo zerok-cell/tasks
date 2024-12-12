@@ -14,12 +14,14 @@ const CardsNews = () => {
 
     const getPotion = async ()=>{
         if(potions.potions.length === 0){
+
             try {
 
                 const result = await getJoke()
                 dispatch(setPotions(result))
                 setError(false)
                 setLoading(false);
+
 
             }catch{
                 setLoading(false);
@@ -34,6 +36,7 @@ const CardsNews = () => {
 
     useEffect(() => {
         getPotion()
+        console.log()
 
     }, []);
 
@@ -55,13 +58,21 @@ const CardsNews = () => {
             <Flex direction="row" justify="space-between" wrap={'wrap'}>
                 {potions.potions.map((potion) => (
                     potion.map((potion)=>(
-                        potion.map((potion, key) => (
-
-                            <CardPotion id={potion.id} key={key} data={potion} />
-                        ))
+                        potion.map((potion, key) => {
+                            return (<CardPotion id={key} key={key} data={potion} />)
+            })
                     ))
                 ))}
-
+                {/*{*/}
+                {/*    Object.keys(potions.potions[0][0]).map(*/}
+                {/*        key=> potions.potions[0][0].map((item,index)=>{*/}
+                {/*            console.log(key)*/}
+                {/*            return (*/}
+                {/*                <CardPotion id={Number(key)} key={index} data={item} />*/}
+                {/*            )*/}
+                {/*        })*/}
+                {/*    )*/}
+                {/*}*/}
             </Flex>
 
         </>

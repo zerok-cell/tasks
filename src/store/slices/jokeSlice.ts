@@ -17,8 +17,16 @@ export const jokeSlice = createSlice({
             state.potions.push(action.payload)
         },
         delPotions:(state, action:PayloadAction<string>)=>{
-            console.log(state.potions.map(i=>i))
-            console.log(action.payload)
+            state.potions.map(
+                item=>item.map(item=>item.map(
+                    item=> {
+                        if (item.id === action.payload){
+
+                        }
+                    }
+                ))
+            )
+
         },
     }
 })

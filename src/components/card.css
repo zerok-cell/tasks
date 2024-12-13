@@ -1,7 +1,7 @@
 .card {
   background-color: #0C0C0D;
   width: 200px;
-  height: 100px;
+  height: 130px;
   border-radius: 10px;
   margin: 10px;
 }
@@ -12,6 +12,11 @@
 
 .heart-flex {
   margin-left: 10px;
+}
+
+.no-a-style {
+  text-decoration: none;
+  color: white;
 }
 
 /*# sourceMappingURL=card.css.map */

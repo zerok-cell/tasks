@@ -1,9 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import jokeReducer from "@/store/slices/jokeSlice.ts";
-
+import potionReducer from "@/store/slices/potionSlice.ts";
+import filterReducer from "@/store/slices/filterSlice.ts";
 export const store = configureStore({
     reducer:{
-        potions: jokeReducer
+        potions: potionReducer,
+        filter:filterReducer,
     }
 })
 

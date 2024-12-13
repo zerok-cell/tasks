@@ -9,7 +9,7 @@ export interface JokeState {
 const initialState: JokeState = {
     potions:[]
 }
-export const jokeSlice = createSlice({
+export const potionSlice = createSlice({
     name:"potions",
     initialState,
     reducers:{
@@ -17,17 +17,13 @@ export const jokeSlice = createSlice({
             state.potions.push(action.payload)
         },
         delPotions:(state, action:PayloadAction<number>)=>{
-            const result:Root = []
             state.potions[0][0].splice(action.payload,1)
-            for (const potion of state.potions[0][0]){
-                result.push(potion)
-            }
-            setPotions(result)
+
 
         },
     }
 })
 
-export const {setPotions, delPotions} =  jokeSlice.actions;
+export const {setPotions, delPotions} =  potionSlice.actions;
 export const selectPotions = (state:RootState) => state.potions
-export default jokeSlice.reducer
+export default potionSlice.reducer

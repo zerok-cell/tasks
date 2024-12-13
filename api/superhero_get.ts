@@ -13,7 +13,19 @@ const destructApi = (massiv:Root) =>{
     return result
 }
 
-const getJoke = async ()=>{
+export const getPotionWithUseId = async (id:string)=>{
+    const url =`https://wizard-world-api.herokuapp.com/Elixirs/${id}`
+    const request =  await axios.get(url, {timeout:100000, method:"get", headers:{
+
+            "Access-Control-Allow-Methods": true,
+            "Content-Type": "application/json"
+
+        }})
+    return await request.data
+
+}
+
+const getPotino = async ()=>{
     const url ='https://wizard-world-api.herokuapp.com/Elixirs/'
 
     const result:Root = []
@@ -35,4 +47,4 @@ const getJoke = async ()=>{
     return result
 }
 
-export default getJoke;
+export default getPotino;

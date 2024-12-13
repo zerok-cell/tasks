@@ -1,19 +1,22 @@
 
-import {Suspense} from 'react'
 
 
 
 import './App.css'
 import CardsNews from "@/CardsNews.tsx";
-import {Spinner} from "@chakra-ui/react";
+import {Outlet, useParams} from "react-router";
 function App() {
-
+    const param = useParams();
 
   return (
     <>
-        <Suspense fallback={<Spinner />} >
-            <CardsNews/>
-        </Suspense>
+
+        {
+            param?.id ? (<Outlet/>):(<CardsNews/>)
+
+        }
+
+
     </>
   )
 }

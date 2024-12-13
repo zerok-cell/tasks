@@ -2,21 +2,25 @@ import {Spinner, Flex} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import getJoke from "../api/superhero_get.ts";
 import {useDispatch, useSelector} from "react-redux";
-import {selectPotions, setPotions} from "@/store/slices/jokeSlice.ts";
+import {selectPotions, setPotions} from "@/store/slices/potionSlice.ts";
 import CardPotion from "@/components/CardPotion.tsx";
+import {selectStatus} from "@/store/slices/filterSlice.ts";
+import Filters from "@/components/Filters.tsx";
+import FavoritCard from "@/components/FavoritCard.tsx";
+
 
 const CardsNews = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
     const potions  = useSelector(selectPotions);
+    const status = useSelector(selectStatus);
 
 
     const getPotion = async ()=>{
         if(potions.potions.length === 0){
 
             try {
-
                 const result = await getJoke()
                 dispatch(setPotions(result))
                 setError(false)
@@ -27,8 +31,6 @@ const CardsNews = () => {
                 setLoading(false);
                 setError(true)
             }
-
-
         }else {
             setLoading(false);
         }
@@ -36,9 +38,8 @@ const CardsNews = () => {
 
     useEffect(() => {
         getPotion()
-        console.log()
 
-    }, []);
+    }, [getPotion]);
 
     if (loading) {
         return <Spinner />;
@@ -55,24 +56,16 @@ const CardsNews = () => {
     return (
         <>
             <h1>Potion Harry Potter</h1>
+            <Filters/>
+
             <Flex direction="row" justify="space-between" wrap={'wrap'}>
-                {potions.potions.map((potion) => (
+                {status ? (potions.potions.map((potion) => (
                     potion.map((potion)=>(
                         potion.map((potion, key) => {
                             return (<CardPotion id={key} key={key} data={potion} />)
             })
                     ))
-                ))}
-                {/*{*/}
-                {/*    Object.keys(potions.potions[0][0]).map(*/}
-                {/*        key=> potions.potions[0][0].map((item,index)=>{*/}
-                {/*            console.log(key)*/}
-                {/*            return (*/}
-                {/*                <CardPotion id={Number(key)} key={index} data={item} />*/}
-                {/*            )*/}
-                {/*        })*/}
-                {/*    )*/}
-                {/*}*/}
+                ))): <FavoritCard/>}
             </Flex>
 
         </>

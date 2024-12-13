@@ -7,21 +7,27 @@ import {store} from "@/store/store.ts";
 import {Provider} from 'react-redux'
 import {Provider as ChakraProvider} from "@/components/ui/provider"
 import MoreInfoPotion from "@/components/MoreInfoPotion.tsx";
+import FormFromAddCard from "@/components/FormFromAddCard.tsx";
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
+        <Provider store={store}>
+
       <ChakraProvider>
-            <Provider store={store}>
+
                         <BrowserRouter>
                             <Routes>
                                 <Route  path={'products'}  element={<App />}>
                                     <Route path={':id'} element={<MoreInfoPotion/>}/>
                                 </Route>
+                                <Route path={'/create-product/'} element={<FormFromAddCard/>}/>
 
 
                             </Routes>
                         </BrowserRouter>
-            </Provider>
+
       </ChakraProvider>
+    </Provider>
+
     </StrictMode>
 
 )

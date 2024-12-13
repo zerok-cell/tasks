@@ -1,23 +1,12 @@
-import {useParams} from "react-router";
-
-import {getPotionWithUseId} from "../../api/superhero_get.ts";
-import {useEffect, useState} from "react";
+import {Link, useParams} from "react-router";
 import {Flex} from "@chakra-ui/react";
-import {Root2} from "../../api/types.ts";
 import {CSSProperties} from "@mui/material/styles/createMixins";
+import {useSelector} from "react-redux";
+import {selectPotions} from "@/store/slices/potionSlice.ts";
 
 const MoreInfoPotion = ()=>{
     const param = useParams();
-    const [potion, setPotion] = useState<Root2>()
-
-    useEffect(() => {
-        const getAndSetItem =async ()=>{
-            const result = param.id !== undefined ? await getPotionWithUseId(param.id): null
-            setPotion(result)
-        }
-
-            getAndSetItem()
-    }, []);
+    const potion = useSelector(selectPotions).potions[0][0][Number(param.id)];
 
     const styleFromEffectsBlock:CSSProperties = {
         background:"#0C0C0D",
@@ -28,15 +17,12 @@ const MoreInfoPotion = ()=>{
         background:"#161616",
         borderRadius:10,
         padding:10,
-
-
-
     }
 
     return (
 
         <Flex gap={4}>
-            <button>Go main page</button>
+            <Link to={'/products/'}> <button>Go main page</button></Link>
             <Flex  justify={'center'} alignItems={'center'} style={styleFromName}>
 
                 <h1>{potion?.name}</h1>
@@ -51,7 +37,7 @@ const MoreInfoPotion = ()=>{
                     {
                         potion?.ingredients ? (potion.ingredients.map((ingredient) => (
                             <li key={ingredient.id}>{ingredient.name}</li>
-                        ))) : (<p>No ingredients</p>)
+                        ))) : (<li>No ingredients</li>)
                     }
                 </ul>
             </Flex>

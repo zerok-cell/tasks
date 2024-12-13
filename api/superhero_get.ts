@@ -1,17 +1,6 @@
 import axios from "axios";
-import {Root, Root2} from "./types.ts";
+import {Root} from "./types.ts";
 
-const destructApi = (massiv:Root) =>{
-    const result:Root2[] = []
-    massiv.map(
-        item=>item.map(
-            (i)=>{
-                result.push(i)
-            }
-        )
-    )
-    return result
-}
 
 export const getPotionWithUseId = async (id:string)=>{
     const url =`https://wizard-world-api.herokuapp.com/Elixirs/${id}`
@@ -29,7 +18,6 @@ const getPotino = async ()=>{
     const url ='https://wizard-world-api.herokuapp.com/Elixirs/'
 
     const result:Root = []
-    // for (let i = 0; i<10;i++){
         await axios.get(url, {timeout:100000, method:"get", headers:{
 
                 "Access-Control-Allow-Methods": true,
@@ -40,10 +28,8 @@ const getPotino = async ()=>{
                 result.push(items.data)
             }
         )
-    // }
-    console.log(result)
 
-    // console.log(destructApi(result[1][1].))
+
     return result
 }
 

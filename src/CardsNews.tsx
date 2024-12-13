@@ -7,6 +7,7 @@ import CardPotion from "@/components/CardPotion.tsx";
 import {selectStatus} from "@/store/slices/filterSlice.ts";
 import Filters from "@/components/Filters.tsx";
 import FavoritCard from "@/components/FavoritCard.tsx";
+import {Link} from "react-router";
 
 
 const CardsNews = () => {
@@ -21,7 +22,9 @@ const CardsNews = () => {
         if(potions.potions.length === 0){
 
             try {
+                console.log(1)
                 const result = await getJoke()
+                console.log(result)
                 dispatch(setPotions(result))
                 setError(false)
                 setLoading(false);
@@ -56,6 +59,7 @@ const CardsNews = () => {
     return (
         <>
             <h1>Potion Harry Potter</h1>
+            <Link to={'/create-product/'}><button>Create card</button></Link>
             <Filters/>
 
             <Flex direction="row" justify="space-between" wrap={'wrap'}>

@@ -35,7 +35,7 @@ const CardPotion = ({id,data}:{id:number,data:Root2})=>{
         <Flex  gap={2} direction="row" justify="center" className={"card"}>
 
             <Flex direction="column" justify="center" alignItems="start">
-                <Link className={'no-a-style'} to={`/products/${data.id}`}>
+                <Link className={'no-a-style'} to={`/products/${id}`}>
                     <p>{data.name.slice(0, 11,)}...</p>
                 </Link>
                     <button onMouseUp={deleteCard}>Delete</button>
@@ -51,7 +51,10 @@ const CardPotion = ({id,data}:{id:number,data:Root2})=>{
                 <Flex justify="end" direction={'row'} alignItems="start">
                     <button onMouseUp={addToFavorite}><StarIcon/></button>
                 </Flex>
-                <button onMouseUp={deleteCard}>{">"}</button>
+                <Link className={'no-a-style'} to={`/products/${id}`}>
+                <button>{">"}</button>
+                </Link>
+
             </Flex>
         </Flex>
     )

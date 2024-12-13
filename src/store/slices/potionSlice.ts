@@ -14,9 +14,11 @@ export const potionSlice = createSlice({
     initialState,
     reducers:{
         setPotions:(state, action:PayloadAction<Root>)=> {
-            console.log(action.payload)
             state.potions.push(action.payload)
 
+        },
+        updatePotions:(state, action:PayloadAction<Root2>)=> {
+          state.potions[0][0].push(action.payload)
         },
         delPotions:(state, action:PayloadAction<number>)=>{
             state.potions[0][0].splice(action.payload,1)
@@ -26,6 +28,6 @@ export const potionSlice = createSlice({
     }
 })
 
-export const {setPotions, delPotions} =  potionSlice.actions;
+export const {setPotions, delPotions,updatePotions} =  potionSlice.actions;
 export const selectPotions = (state:RootState) => state.potions
 export default potionSlice.reducer
